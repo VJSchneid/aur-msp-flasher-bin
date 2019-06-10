@@ -21,6 +21,8 @@ source_i686=("http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSP43
 sha1sums_i686=('0ae23f60f2830c49984ea402e5473fe4af6dfcda')
 source_x86_64=("http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSP430Flasher/1_03_20_00/exports/$_installer")
 sha1sums_x86_64=('792f88f92bcf8386865367ea5c8f12d177eb3d28')
+source=("61-msp430uif.rules")
+sha1sums=("8215c9f886d77591ffa86d4023476f9341833fef")
 _install_dir=/opt/ti/$pkgname
 
 build() {
@@ -37,6 +39,9 @@ package() {
   mkdir -p $pkgdir/usr/bin
   ln -s ../../opt/ti/msp-flasher/libmsp430.so $pkgdir/usr/lib/
   ln -s ../../opt/ti/msp-flasher/MSP430Flasher $pkgdir/usr/bin/
+
+  mkdir -p $pkgdir/etc/udev/rules.d
+  cp ${srcdir}/61-msp430uif.rules $pkgdir/etc/udev/rules.d/
 }
 
 # vim:set sts=2 ts=2 sw=2 et:
